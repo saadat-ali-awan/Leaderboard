@@ -3,6 +3,16 @@ class ExtendClassApi {
     this.uri = 'https://json.extendsclass.com/bin/ee2bba3b38cc';
   }
 
+  addGameToDatabase = (gameData) => {
+    fetch(this.uri, {
+      method: 'PUT',
+      body: JSON.stringify(gameData),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+  };
+
   getGameId = async () => {
     try {
       const response = await fetch(this.uri, {
