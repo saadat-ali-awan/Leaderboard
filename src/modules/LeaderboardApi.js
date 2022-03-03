@@ -37,6 +37,17 @@ class LeaderboardApi {
     const data = await response.json();
     this.loadDataToDocument(data.result);
   }
+
+  loadDataToDocument = (arr) => {
+    arr.sort((a, b) => a.score - b.score);
+    document.querySelector('.scores-list').innerHTML = '';
+    arr.forEach((element) => {
+      document.querySelector('.scores-list').innerHTML += `<li>
+        <div>${element.user}</div>
+        <div>${element.score}</div>
+      </li>`;
+    });
+  }
 }
 
 export default LeaderboardApi;
