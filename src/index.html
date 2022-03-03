@@ -6,6 +6,25 @@
     <title>Wbpack Exercise</title>
 </head>
 <body>
-    <h1>Hello webpack!</h1>
+    <h1>Leaderboard</h1>
+    <main>
+        <section class="recent-scores">
+            <header>
+                <h2>Recent scores</h2>
+                <a href="#refresh">Refresh</a>
+            </header>
+            <ul class="scores-list"></ul>
+        </section>
+        <section class="add-score">
+            <header>
+                <h2>Add your score</h2>
+            </header>
+            <form action="/" method="post">
+                <input type="text" name="name" id="name" placeholder="Your Name">
+                <input type="number" name="score" id="score" placeholder="Your Score">
+                <a href="#submit-score">Submit</a>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

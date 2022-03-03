@@ -1,3 +1,20 @@
-body {
-  background-color: bisque;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  border: 0;
+}
+
+main {
+  display: flex;
+}
+
+main > section {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.add-score > form {
+  display: flex;
+  flex-direction: column;
 }
