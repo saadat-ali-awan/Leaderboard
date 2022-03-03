@@ -48,6 +48,19 @@ class LeaderboardApi {
       </li>`;
     });
   }
+
+  addPlayerData = async (userName, userScore) => {
+    fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${this.gameId}/scores/`, {
+      method: 'POST',
+      body: JSON.stringify({
+        user: userName,
+        score: userScore,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+  };
 }
 
 export default LeaderboardApi;
