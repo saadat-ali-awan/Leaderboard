@@ -12,6 +12,8 @@ window.addEventListener('load', () => {
       case '#submit-score':
         if (nameInput.value !== '' && scoreInput.value !== '') {
           leaderboardApi.addPlayerData(nameInput.value, scoreInput.value);
+          nameInput.value = '';
+          scoreInput.value = '';
         }
         break;
       case '#refresh':
