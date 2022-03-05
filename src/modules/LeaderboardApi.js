@@ -2,13 +2,22 @@ import ExtendClassApi from './extendClassApi.js';
 
 class LeaderboardApi {
   init = async () => {
+    this.displayLoadingScreen();
     this.extendClassApi = new ExtendClassApi();
     this.gameId = await this.extendClassApi.getGameId();
     if (!this.gameId) {
-      this.addGame('Micro Game');
+      await this.addGame('Micro Game');
     }
     this.baseUri = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
-    this.getGameData();
+    await this.getGameData();
+  }
+
+  displayLoadingScreen = () => {
+    document.querySelector('#loading-bar').style.display = 'block';
+  }
+
+  hideLoadingScreen = () => {
+    document.querySelector('#loading-bar').style.display = 'none';
   }
 
   addGame = async (gameName) => {
@@ -36,16 +45,47 @@ class LeaderboardApi {
     });
     const data = await response.json();
     this.loadDataToDocument(data.result);
+    this.hideLoadingScreen();
   }
 
   loadDataToDocument = (arr) => {
-    arr.sort((a, b) => a.score - b.score);
+    if (arr.length === 0) {
+      return;
+    }
+    arr.sort((a, b) => b.score - a.score);
+    this.list = arr;
     document.querySelector('.scores-list').innerHTML = '';
-    arr.forEach((element) => {
-      document.querySelector('.scores-list').innerHTML += `<li>
-        <div>${element.user}</div>
-        <div>${element.score}</div>
+    let largest = arr[0].score;
+    let medal = 'gold';
+    arr.forEach((element, index) => {
+      const percent = (element.score / arr[0].score) * 100;
+      let dashes = '';
+      for (let i = 0; i < 10; i += 1) {
+        if (i < Math.floor(percent / 10)) {
+          dashes += '<span>|</span>';
+        } else {
+          dashes += '<span class="greyed">|</span>';
+        }
+      }
+      if (element.score !== largest) {
+        switch (medal) {
+          case 'gold':
+            medal = 'silver';
+            break;
+          case 'silver':
+            medal = 'bronze';
+            break;
+          default:
+            medal = 'none';
+            break;
+        }
+      }
+      document.querySelector('.scores-list').innerHTML += `<li id='position-${index}' class='${medal}'>
+        <div class='dashes'>${dashes}</div>
+        <div class='user'>${element.user}</div>
+        <div class='score'>${element.score}</div>
       </li>`;
+      largest = element.score;
     });
   }
 
