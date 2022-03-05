@@ -2,10 +2,29 @@
   box-sizing: border-box;
   padding: 0;
   border: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: rebeccapurple;
+  height: 100vh;
+  color: #fff;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 1rem;
 }
 
 main {
   display: flex;
+  justify-content: center;
+  width: 70%;
+  height: 80%;
 }
 
 main > section {
@@ -14,7 +33,11 @@ main > section {
   padding: 1rem;
 }
 
-.add-score > form {
+header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px;
+  margin-right: 0;
 }
