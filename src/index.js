@@ -17,7 +17,7 @@ window.addEventListener('load', () => {
         }
         break;
       case '#refresh':
-        leaderboardApi.displayLoadingScreen();
+        leaderboardApi.loadingScreen('block');
         leaderboardApi.getGameData();
         break;
       default:

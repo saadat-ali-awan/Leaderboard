@@ -2,7 +2,7 @@ import ExtendClassApi from './extendClassApi.js';
 
 class LeaderboardApi {
   init = async () => {
-    this.displayLoadingScreen();
+    this.loadingScreen('block');
     this.extendClassApi = new ExtendClassApi();
     this.gameId = await this.extendClassApi.getGameId();
     if (!this.gameId) {
@@ -12,12 +12,8 @@ class LeaderboardApi {
     await this.getGameData();
   }
 
-  displayLoadingScreen = () => {
-    document.querySelector('#loading-bar').style.display = 'block';
-  }
-
-  hideLoadingScreen = () => {
-    document.querySelector('#loading-bar').style.display = 'none';
+  loadingScreen = (status) => {
+    document.querySelector('#loading-bar').style.display = status;
   }
 
   addGame = async (gameName) => {
@@ -45,7 +41,7 @@ class LeaderboardApi {
     });
     const data = await response.json();
     this.loadDataToDocument(data.result);
-    this.hideLoadingScreen();
+    this.loadingScreen('none');
   }
 
   loadDataToDocument = (arr) => {
