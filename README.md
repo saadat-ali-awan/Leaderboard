@@ -1,6 +1,8 @@
 # Leaderboard
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
+[Live Demo](https://saadat123456.github.io/Leaderboard/)
+
 ## Additional description about the project and its features:
 
 ## Built With
